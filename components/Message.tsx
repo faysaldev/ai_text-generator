@@ -17,7 +17,7 @@ const Message = ({ message }: Props) => {
           src={message?.user.avatar}
           alt=""
           className={`h-14  w-14  ${
-            isEasyAi && "w-16 h-16"
+            isEasyAi && "w-24 h-24"
           } rounded-md object-contain`}
         />
         <p className="pt-1 text-sm">{message.text}</p>

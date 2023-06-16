@@ -3,67 +3,23 @@ import {
   ExclamationTriangleIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen px-2 text-white">
-      <h1 className="text-5xl font-bold mb-20 font-mono">EasyAi</h1>
-
-      <div className="flex space-x-3 text-center">
-        <div>
-          <div className="flex flex-col items-center justify-center mb-5">
-            <SunIcon className="h-6 w-6" />
-            <h2>Examples</h2>
-          </div>
-          {/* text */}
-          <div className="space-y-2">
-            <p className="infoText">{"'Explain Somethiing to me'"}</p>
-            <p className="infoText">
-              {"'What is the difference between a dog and a cat?'"}
-            </p>
-            <p className="infoText">{"'What is the color of the sun?'"}</p>
-          </div>
-        </div>
-
-        {/* second one  */}
-        <div>
-          <div className="flex flex-col items-center justify-center mb-5">
-            <BoltIcon className="h-6 w-6" />
-            <h2>Capabilities</h2>
-          </div>
-
-          {/* text */}
-          <div className="space-y-2">
-            <p className="infoText">{"'Change the EasyAI Model to use'"}</p>
-            <p className="infoText">{"'Messages are stored in Firebase '"}</p>
-            <p className="infoText">
-              {"'Hot Toast notification when EasyAi is Thinking'"}
-            </p>
-          </div>
-        </div>
-
-        {/* thired one  */}
-        <div>
-          <div className="flex flex-col items-center justify-center mb-5">
-            <ExclamationTriangleIcon className="h-6 w-6" />
-
-            <h2>Limitations</h2>
-          </div>
-          {/* text */}
-          <div className="space-y-2">
-            <p className="infoText">
-              {"'May occasionlly generate incorrect information'"}
-            </p>
-            <p className="infoText">
-              {
-                "'May occasionlly produce harmful instruction or biased content'"
-              }
-            </p>
-            <p className="infoText">
-              {"'Limited knoledge of world and events after 2021'"}
-            </p>
-          </div>
-        </div>
+      <div className="flex flex-col space-x-10 text-center items-center justify-center">
+        <Image
+          src={
+            "https://i.ibb.co/Jn49Jkr/Screenshot-2023-06-10-171245-removebg-preview-1.png"
+          }
+          className=""
+          width={400}
+          height={200}
+        />
+        <h1 className="text-2xl font-bold mb-20 font-mono">
+          Start You Query To Click The New Chat Plus Button✌ in Top Left
+        </h1>
       </div>
     </div>
   );

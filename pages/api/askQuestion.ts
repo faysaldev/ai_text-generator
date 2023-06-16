@@ -22,19 +22,22 @@ export default async function handler(
     return;
   }
 
-  //  todo easyai Query
-  const response = await query(prompt, chatId, model);
+  if(prompt =='who created you'|| 'who made you'|| 'who create you'|| 'who is your creator'|| 'your creator name'){
+      const response = await query(prompt, chatId, model);
   const message: Message = {
-    text: response || "EasyAi was unable to find an answer for the specified",
+    text: 'Faysal Mridha, Mohibbullah, Rupom create That Site. These three are studying 5th semester of computer science department at Barisal Polytechnic Institute',
     createAt: admin.firestore.Timestamp.now(),
     user: {
       _id: "EasyAi",
       name: "EasyAi",
-      avatar: "https://i.ibb.co/mt6rQqk/download-removebg-preview.png",
+      avatar: "https://i.ibb.co/Jn49Jkr/Screenshot-2023-06-10-171245-removebg-preview-1.png",
     },
+
+
   };
 
-  await adminDb
+    // add to the data base
+      await adminDb
     .collection("users")
     .doc(session?.user?.email)
     .collection("chats")
@@ -42,26 +45,57 @@ export default async function handler(
     .collection("messages")
     .add(message);
     res.status(200).json({ answer:message.text});
+
+
+
+
+
+  }else{
+  //  todo easyai Query
+
+      const response = await query(prompt, chatId, model);
+  const message: Message = {
+    text: response || "EasyAi was unable to find an answer for the specified",
+    createAt: admin.firestore.Timestamp.now(),
+    user: {
+      _id: "EasyAi",
+      name: "EasyAi",
+      avatar: "https://i.ibb.co/Jn49Jkr/Screenshot-2023-06-10-171245-removebg-preview-1.png",
+    },
+  };
+
+    await adminDb
+    .collection("users")
+    .doc(session?.user?.email)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
+    res.status(200).json({ answer:message.text});
+
+  }
+
+  //  todo easyai Query
+  // const response = await query(prompt, chatId, model);
+  // const message: Message = {
+  //   text: response || "EasyAi was unable to find an answer for the specified",
+  //   createAt: admin.firestore.Timestamp.now(),
+  //   user: {
+  //     _id: "EasyAi",
+  //     name: "EasyAi",
+  //     avatar: "https://i.ibb.co/Jn49Jkr/Screenshot-2023-06-10-171245-removebg-preview-1.png",
+  //   },
+  // };
+
+
+
+  // await adminDb
+  //   .collection("users")
+  //   .doc(session?.user?.email)
+  //   .collection("chats")
+  //   .doc(chatId)
+  //   .collection("messages")
+  //   .add(message);
+  //   res.status(200).json({ answer:message.text});
   //  res.status(200).json({ name: 'John Doe' })
 }
-
-
-
-
-// const { Configuration, OpenAIApi } = require("openai");
-
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
-// const openai = new OpenAIApi(configuration);
-
-// const response = await openai.createCompletion({
-//   model: "text-davinci-003",
-//   prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: I'd like to cancel my subscription.\nAI:",
-//   temperature: 0.9,
-//   max_tokens: 150,
-//   top_p: 1,
-//   frequency_penalty: 0.0,
-//   presence_penalty: 0.6,
-//   stop: [" Human:", " AI:"],
-// });
