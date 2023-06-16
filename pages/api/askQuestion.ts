@@ -22,7 +22,7 @@ export default async function handler(
     return;
   }
 
-  if(prompt =='who created you'|| 'who made you'|| 'who create you'|| 'who is your creator'|| 'your creator name'){
+  if(prompt =='who created you'|| prompt =='who made you'|| prompt =='who create you'||prompt == 'who is your creator'|| prompt =='your creator name'){
       const response = await query(prompt, chatId, model);
   const message: Message = {
     text: 'Faysal Mridha, Mohibbullah, Rupom create That Site. These three are studying 5th semester of computer science department at Barisal Polytechnic Institute',
@@ -48,6 +48,32 @@ export default async function handler(
 
 
 
+
+
+  }else if(prompt =='bpi principal name'|| prompt=="who is the principal of bpi"){
+
+      const response = await query(prompt, chatId, model);
+  const message: Message = {
+    text: 'Engineer Md Ruhul Amin The Principal Of Barishal Polytechnic Institute. Recently he was won the Best Principal Award from BTEB',
+    createAt: admin.firestore.Timestamp.now(),
+    user: {
+      _id: "EasyAi",
+      name: "EasyAi",
+      avatar: "https://i.ibb.co/Jn49Jkr/Screenshot-2023-06-10-171245-removebg-preview-1.png",
+    },
+
+
+  };
+
+    // add to the data base
+      await adminDb
+    .collection("users")
+    .doc(session?.user?.email)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
+    res.status(200).json({ answer:message.text});
 
 
   }else{
